@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="registerForm" (ngSubmit)="Register()">
+        <p-card header="註冊" [style]="{ width: '500px' }">
+          <div class="field">
+            <label for="name">暱稱</label>
+            <input
+              type="text"
+              pInputText
+              formControlName="name"
+              class="w-full"
+              name="name"
+              placeholder="輸入暱稱"
+            />
+            <small
+              *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="fullName.errors?.['required']">請輸入暱稱</div>
+              <div *ngIf="fullName.errors?.['pattern']">暱稱不符合格式</div>
+            </small>
+          </div>
+          <div class="field">
+            <label for="email">電子郵件</label>
+            <input
+              type="text"
+              pInputText
+              formControlName="email"
+              class="w-full"
+              name="email"
+              placeholder="輸入電子郵件"
+            />
+            <small
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="email.errors?.['required']">請輸入電子郵件</div>
+              <div *ngIf="email.errors?.['Email']">電子郵件不符合格式</div>
+            </small>
+          </div>
+          <div class="field">
+            <label for="password">密碼</label>
+            <div class="p-inputgroup">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                pInputText
+                formControlName="password"
+                class="w-full"
+                name="password"
+                placeholder="輸入密碼"
+              />
+              <span class="p-inputgroup-addon">
+                <button
+                  type="button"
+                  class="p-link"
+                  (click)="toggleShowPassword()"
+                  aria-label="Toggle Password Visibility"
+                >
+                  <i
+                    [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"
+                    style="color: slateblue"
+                  ></i>
+                </button>
+              </span>
+            </div>
+            <small
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="password.errors?.['required']">請輸入密碼</div>
+            </small>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">確認密碼</label>
+            <div class="p-inputgroup">
+              <input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                pInputText
+                formControlName="confirmPassword"
+                class="w-full"
+                name="confirmPassword"
+                placeholder="確認密碼"
+              />
+              <span class="p-inputgroup-addon">
+                <button
+                  type="button"
+                  class="p-link"
+                  (click)="toggleConfirmShowPassword()"
+                  aria-label="Toggle Password Visibility"
+                >
+                  <i
+                    [class]="
+                      showConfirmPassword ? 'pi pi-eye-slash' : 'pi pi-eye'
+                    "
+                    style="color: slateblue"
+                  ></i>
+                </button>
+              </span>
+            </div>
+            <small
+              *ngIf="
+                confirmPassword.invalid &&
+                (confirmPassword.dirty || confirmPassword.touched)
+              "
+              class="block p-error"
+            >
+              <div *ngIf="confirmPassword.errors?.['required']">
+                請輸入確認密碼
+              </div>
+            </small>
+            <small
+              class="block p-error"
+              *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+            >
+              密碼不一致
+            </small>
+          </div>
+          <p-button
+            label="註冊"
+            styleClass="w-full"
+            [disabled]="registerForm.invalid"
+            type="submit"
+            class="btn btn-color px-5 mb-5 w-100"
+          ></p-button>
+          <div class="mt-2">已經是會員? <a routerLink="/login">登入</a></div>
+        </p-card>
+      </form>
+    </div>
+  </div>
+</div>

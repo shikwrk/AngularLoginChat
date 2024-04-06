@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="loginForm" (ngSubmit)="Login()">
+        <p-card header="登入" [style]="{ width: '500px' }">
+          <div class="field">
+            <label for="emailInput">電子郵件</label>
+            <input
+              id="emailInput"
+              type="text"
+              pInputText
+              formControlName="email"
+              class="w-full"
+              placeholder="輸入電子郵件"
+            />
+            <small
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="p-error"
+            >
+              <div *ngIf="email.errors?.['required']">請輸入電子郵件</div>
+              <div *ngIf="email.errors?.['email']">電子郵件格式不正確</div>
+            </small>
+          </div>
+          <div class="field password-field">
+            <label for="passwordInput">密碼</label>
+            <div class="p-inputgroup">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                id="passwordInput"
+                pInputText
+                formControlName="password"
+                placeholder="輸入密碼"
+              />
+              <span class="p-inputgroup-addon">
+                <button
+                  type="button"
+                  class="p-link"
+                  (click)="toggleShowPassword()"
+                  aria-label="Toggle Password Visibility"
+                >
+                  <i
+                    [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"
+                    style="color: slateblue"
+                  ></i>
+                </button>
+              </span>
+            </div>
+          </div>
+
+          <p-button
+            label="登入"
+            styleClass="w-full"
+            [disabled]="loginForm.invalid"
+            type="submit"
+            class="btn btn-color px-5 mb-5 w-100"
+          ></p-button>
+          <div class="mt-2">還不是會員? <a routerLink="/register">註冊</a></div>
+        </p-card>
+      </form>
+    </div>
+  </div>
+</div>
