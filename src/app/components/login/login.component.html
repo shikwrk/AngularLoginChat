@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-4">
       <form [formGroup]="loginForm" (ngSubmit)="Login()">
         <p-card header="登入" [style]="{ width: '500px' }">
           <div class="field">
@@ -45,6 +45,12 @@
                 </button>
               </span>
             </div>
+            <small
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="block p-error"
+            >
+              <div *ngIf="password.errors?.['required']">請輸入密碼</div>
+            </small>
           </div>
 
           <p-button

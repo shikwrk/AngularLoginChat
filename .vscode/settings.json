@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/23863e46-37c3-41f9-b9d0-1ce9c4aefd7b/resourceGroups/AngularProject/providers/Microsoft.Web/sites/AngularLoginChat",
+  "appService.deploySubpath": "dist\\angular-demo"
+}
